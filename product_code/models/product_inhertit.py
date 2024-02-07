@@ -8,25 +8,28 @@ class CategoryInherit(models.Model):
 
     @api.model
     def generate_sequence(self, category_name):
-        sequence_code = f'category_{category_name}_sequence'
-        sequence_prefix = self.code
-        sequence = self.env['ir.sequence'].create({
-            'name': sequence_code,
-            'code': sequence_code,
-            'prefix': sequence_prefix,
-            'padding': 4,
-        })
-        new_category = self.create({
-            'name': category_name,
-            'code': f'cat_{category_name}',
-            'sequence_id': sequence.id,
-        })
-        return sequence
+        for rec in self:
+            sequence_name = rec.name
+            sequence_code = f'category_{category_name}_sequence'
+            sequence_prefix = rec.code
+            sequence = self.env['ir.sequence'].create({
+                'name': sequence_name,
+                'code': sequence_code,
+                'prefix': sequence_prefix,
+                'padding': 4,
+            })
+            new_category = self.create({
+                'name': category_name,
+                'code': f'cat_{category_name}',
+                'sequence_id': sequence.id,
+            })
+            return sequence
 
     def button_generate_sequence(self):
-        category_name = 'New Category'
-        generated_sequence = self.generate_sequence(category_name)
-        self.sequence_id = generated_sequence
+        for rec in self:
+            category_name = rec.name
+            generated_sequence = self.generate_sequence(category_name)
+            self.sequence_id = generated_sequence
 
 
 class ProductInherit(models.Model):
