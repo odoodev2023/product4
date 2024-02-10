@@ -18,11 +18,7 @@ class CategoryInherit(models.Model):
                 'prefix': sequence_prefix,
                 'padding': 4,
             })
-            new_category = self.create({
-                'name': category_name,
-                'code': f'cat_{category_name}',
-                'sequence_id': sequence.id,
-            })
+            rec.sequence_id = sequence
             return sequence
 
     def button_generate_sequence(self):
