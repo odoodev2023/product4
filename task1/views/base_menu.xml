@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+            id="Paid_unpaid_menu"
+            name="Task One"
+    />
+    <menuitem
+            id="Payment_menu"
+            name="Payment"
+            parent="Paid_unpaid_menu"
+    />
+
+
+</odoo>

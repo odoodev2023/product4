@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_payments_form" model="ir.ui.view">
+        <field name="name">payments.form</field>
+        <field name="model">task.one</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="paid_or_unpaid"/>
+                    <field name="customer_or_company" attrs="{'invisible': [('paid_or_unpaid', '!=', 'paid')]}"/>
+                    <button string="Create Order Line" type="object" name="open_order_lines"
+                            attrs="{'invisible': [('customer_or_company', '!=', 'customer')]}"/>
+
+                </group>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="paid_action" model="ir.actions.act_window">
+        <field name="name">paid Action</field>
+        <field name="res_model">task.one</field>
+    </record>
+
+    <menuitem
+            id="paid_or_unpaid_menu"
+            name="Paid Or Unpaid"
+            parent="Payment_menu"
+            action="paid_action"
+
+    />
+</odoo>
