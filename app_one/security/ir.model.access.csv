@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_property,access.property,app_one.model_property,base.group_user,1,1,1,1
+access_owner,access.owner,app_one.model_owner,base.group_user,1,1,1,1
+access_tag,access.tag,app_one.model_tag,base.group_user,1,1,1,1
+access_change_state,access.change.state,app_one.model_change_state,base.group_user,1,1,1,1
+
